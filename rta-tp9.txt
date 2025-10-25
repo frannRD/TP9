@@ -1,0 +1,185 @@
+Programación Orientada a Objetos en C++
+1️⃣ ¿Qué es el encapsulamiento?
+
+El encapsulamiento es uno de los pilares fundamentales de la programación orientada a objetos (POO).
+Consiste en ocultar los datos internos de un objeto y controlar el acceso a ellos mediante métodos públicos.
+De esta manera, se evita que otras partes del programa modifiquen los atributos directamente, protegiendo la integridad del objeto.
+
+Niveles de acceso en C++:
+
+public: Los miembros son accesibles desde cualquier parte del programa.
+
+private: Los miembros solo pueden ser accedidos por las funciones de la propia clase.
+
+protected: Los miembros pueden ser accedidos desde la clase y también desde las clases que la heredan.
+
+Ejemplo:
+
+class Persona {
+private:
+    string nombre;
+public:
+    void setNombre(string n) {
+        nombre = n;
+    }
+    string getNombre() {
+        return nombre;
+    }
+};
+
+2️⃣ Getters y Setters
+
+Los getters y setters son funciones que permiten acceder y modificar los valores privados de una clase de manera controlada.
+
+Getter: Devuelve el valor de un atributo privado.
+
+Setter: Asigna un nuevo valor a un atributo privado, pudiendo validar la información antes de hacerlo.
+
+Propósito principal:
+
+Controlar el acceso y modificación de los datos, evitando errores o asignaciones indebidas.
+
+Cuándo se usan:
+
+Cuando los atributos son privados o protegidos.
+
+Cuando se necesita validar un valor antes de asignarlo.
+
+Cuando se desea mantener el principio de encapsulamiento.
+
+Ejemplo:
+
+class Cuenta {
+private:
+    float saldo;
+public:
+    void setSaldo(float s) {
+        if (s >= 0) {
+            saldo = s;
+        }
+    }
+    float getSaldo() {
+        return saldo;
+    }
+};
+
+3️⃣ Diferencia entre un constructor y un destructor
+
+Constructor: Es una función especial que se ejecuta automáticamente al crear un objeto.
+Su función principal es inicializar los atributos.
+
+Destructor: Es una función especial que se ejecuta automáticamente cuando el objeto se destruye o sale del ámbito.
+Su función principal es liberar recursos o realizar tareas de limpieza.
+
+Ejemplo:
+
+class Archivo {
+public:
+    Archivo() {
+        cout << "Archivo abierto" << endl;
+    }
+    ~Archivo() {
+        cout << "Archivo cerrado" << endl;
+    }
+};
+
+4️⃣ Diferencias entre Constructores y Destructores
+
+Nombre:
+
+Constructor: igual al nombre de la clase.
+
+Destructor: igual al nombre de la clase pero con ~ delante.
+
+Ejecución:
+
+Constructor: cuando se crea el objeto.
+
+Destructor: cuando se destruye el objeto.
+
+Cantidad:
+
+Constructor: puede haber varios (sobrecargados).
+
+Destructor: solo puede haber uno.
+
+Parámetros:
+
+Constructor: puede tener parámetros.
+
+Destructor: no puede tener parámetros.
+
+Uso principal:
+
+Constructor: inicializar los atributos o asignar memoria.
+
+Destructor: liberar memoria o cerrar archivos.
+
+Sobrecarga:
+
+Constructor: sí se puede sobrecargar.
+
+Destructor: no se puede sobrecargar.
+
+5️⃣ Diferencia entre definir una función miembro dentro o fuera de la clase
+Definición dentro de la clase:
+
+La implementación se escribe directamente dentro del cuerpo de la clase.
+
+Automáticamente se considera inline, es decir, el compilador puede reemplazar la llamada a la función por el código directamente.
+
+Ventajas:
+
+Más rápido en funciones pequeñas.
+
+Código más corto y directo.
+
+Desventajas:
+
+Si hay muchas funciones inline, el tamaño del ejecutable puede aumentar.
+
+Si la función es grande, el código se vuelve menos legible.
+
+Ejemplo:
+
+class Persona {
+public:
+    void saludar() {
+        cout << "Hola!" << endl;
+    }
+};
+
+Definición fuera de la clase:
+
+Dentro de la clase solo se declara la función.
+
+La implementación se realiza fuera, usando el operador de resolución de ámbito (::).
+
+Ventajas:
+
+Separa la interfaz de la implementación (mejor organización).
+
+Código más limpio y fácil de mantener en clases grandes.
+
+Desventajas:
+
+Más líneas de código.
+
+Ligeramente más trabajo en la escritura inicial.
+
+Ejemplo:
+
+class Persona {
+public:
+    void saludar();
+};
+
+void Persona::saludar() {
+    cout << "Hola!" << endl;
+}
+
+Cuándo usar cada una:
+
+Dentro de la clase: cuando la función es corta (getters, setters, mensajes simples).
+
+Fuera de la clase: cuando la función es larga, realiza cálculos complejos o se busca mantener el código ordenado.
